@@ -1,13 +1,13 @@
-// let computerPlay = () => {
-//     let val = random(3);
-//     let computerPlay;
-//     if (val == 0) {computerPlay = 'rock'}
-//     else if (val == 1) {computerPlay = 'paper'}
-//     else {computerPlay = 'scissors'}
-//     return computerPlay;
-// }
+let getComputerMove = () => {
+    let val = random(3);
+    let computerPlay;
+    if (val == 0) {computerPlay = 'rock'}
+    else if (val == 1) {computerPlay = 'paper'}
+    else {computerPlay = 'scissors'}
+    return computerPlay;
+}
 
-// let computerPlay = () => {
+// let getComputerMove = () => {
 //     let computerPlay;
 //     switch(random(3)) {
 //         case 0:
@@ -44,27 +44,27 @@ let random = (x) => {
 }
 
 let playRound = (playerMove, computerMove) => {
-    let result = [];
+    let result = `You played ${playerMove}.\nComputer played ${computerMove}.\n`;
     if (playerMove == computerMove) {
-        result = 'tie';
+        result += 'The result is a tie!';
     }
     else if (playerMove == 'rock' && computerMove == 'scissors') {
-        result = 'You win! Rock cuts Scissors';
+        result+= 'Computer played scissors \nYou win! Rock crushes Scissors';
     }
     else if (playerMove == 'rock' && computerMove == 'paper') {
-        result = 'You lose :( Paper crushes Rock';
+        result += 'Computer played paper \nYou lose :( Paper crushes Rock';
     }
     else if (playerMove == 'paper' && computerMove == 'rock') {
-        result = 'You win! Paper covers Rock';
+        result += 'Computer played rock \nYou win! Paper covers Rock';
     }
     else if (playerMove == 'paper' && computerMove == 'scissors') {
-        result = 'You lose :( Scissors cuts Paper';
+        result += 'Computer played scissors \nYou lose :( Scissors cuts Paper';
     }
     else if (playerMove == 'scissors' && computerMove == 'paper') {
-        result = 'You win! Scissors cuts Paper';
+        result += 'Computer played paper \nYou win! Scissors cuts Paper';
     }
     else if (playerMove == 'scissors' && computerMove == 'rock') {
-        result = 'You lose :( Rock crushes Scissors'
+        result += 'Computer Played rock \nYou lose :( Rock crushes Scissors'
     }
     return result
 }
@@ -80,12 +80,25 @@ let roundTester = () => {
     }
 }
 
+
 let getPlayerMove = () => {
-    move = window.prompt('what is your move? Rock, Paper, or Scissors?').toLowerCase()
+    let move = '';
+    const valid = ['rock', 'paper', 'scissors'];
+    let first = true;
+    popUpText = 'What is your move? Rock, Paper, or Scissors?'
+    while (valid.includes(move) != true) {
+        move = window.prompt(popUpText).toLowerCase();
+        if (first == true) {
+            popUpText = 'Invalid entry, only "Rock", "Paper", or "Scissors" allowed. Please try again.'
+            first = false
+        }
+    }
     return move;
 }
 
 
+
+
 /* ---------- Main ---------- */
 
-console.log(getPlayerMove())
+console.log(playRound(getPlayerMove(), getComputerMove()))
