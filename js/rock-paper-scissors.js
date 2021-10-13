@@ -7,22 +7,6 @@ let getComputerMove = () => {
     return computerPlay;
 }
 
-// let getComputerMove = () => {
-//     let computerPlay;
-//     switch(random(3)) {
-//         case 0:
-//             computerPlay = 'rock';
-//             break;
-//         case 1:
-//             computerPlay = 'paper';
-//             break;
-//         case 2:
-//             computerPlay = 'scissors';
-//             break;
-//     }
-//     return computerPlay;
-// }
-
 /* logger was written to check that random function was working, it is :) */
 let logger = (x) => {
     let cnt1 = 0;
@@ -44,29 +28,37 @@ let random = (x) => {
 }
 
 let playRound = (playerMove, computerMove) => {
-    let result = `You played ${playerMove}.\nComputer played ${computerMove}.\n`;
+    let resultArr = []
+    resultArr[1] = `You played ${playerMove}.\nComputer played ${computerMove}.\n`;
     if (playerMove == computerMove) {
-        result += 'The result is a tie!';
+        resultArr[0] = '0'
+        resultArr[1] += 'The resultArr is a tie!';
     }
     else if (playerMove == 'rock' && computerMove == 'scissors') {
-        result+= 'Computer played scissors \nYou win! Rock crushes Scissors';
+        resultArr[0] = '1';
+        resultArr[1] += 'You win! Rock crushes Scissors';
     }
     else if (playerMove == 'rock' && computerMove == 'paper') {
-        result += 'Computer played paper \nYou lose :( Paper crushes Rock';
+        resultArr[0] = '2';
+        resultArr[1] += 'You lose :( Paper crushes Rock';
     }
     else if (playerMove == 'paper' && computerMove == 'rock') {
-        result += 'Computer played rock \nYou win! Paper covers Rock';
+        resultArr[0] = '1';
+        resultArr[1] += 'You win! Paper covers Rock';
     }
     else if (playerMove == 'paper' && computerMove == 'scissors') {
-        result += 'Computer played scissors \nYou lose :( Scissors cuts Paper';
+        resultArr[0] = '2';
+        resultArr[1] += 'You lose :( Scissors cuts Paper';
     }
     else if (playerMove == 'scissors' && computerMove == 'paper') {
-        result += 'Computer played paper \nYou win! Scissors cuts Paper';
+        resultArr[0] = '1';
+        resultArr[1] += 'You win! Scissors cuts Paper';
     }
     else if (playerMove == 'scissors' && computerMove == 'rock') {
-        result += 'Computer Played rock \nYou lose :( Rock crushes Scissors'
+        resultArr[0] = '2';
+        resultArr[1] += 'You lose :( Rock crushes Scissors'
     }
-    return result
+    return resultArr
 }
 
 /* dev function to check playRound */
@@ -82,7 +74,7 @@ let roundTester = () => {
 
 
 let getPlayerMove = () => {
-    let move = '';
+    let move;
     const valid = ['rock', 'paper', 'scissors'];
     let first = true;
     popUpText = 'What is your move? Rock, Paper, or Scissors?'
@@ -96,9 +88,61 @@ let getPlayerMove = () => {
     return move;
 }
 
+let isRoundsValid = (min, max, number) => {
+    if (Number.isInteger(number) && number >= min && number <= max) {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+let getWinRounds = () => {
+    let max = 10;
+    let min = 1;
+    let first = true;
+    popUpText = 'Please enter the amount of wins you would like to play.\nNumber of rounds must be a whole number between 1 and 10.';
+    let input = parseFloat(window.prompt(popUpText));
+    while (isRoundsValid(min, max, input) != true) {
+        if (first == true) {
+            popUpText = 'Please try again...\n' + popUpText
+            first = false;
+        }
+        input = parseFloat(window.prompt(popUpText));
+
+    }
+    return input
+}
 
 
+let playGame = (winRounds) => {
+    let playerWins = 0;
+    let computerWins = 0;
+    let winner = 0;
+    let gameText;
+    let score;
+    while (true) {
+        resultArr = playRound(getPlayerMove(), getComputerMove())
+        if (resultArr[0] == '1') {playerWins += 1}
+        else if (resultArr[0] == '2') {computerWins += 1}
+        if (playerWins == winRounds) {
+            winner = 1;
+        }
+        else if (computerWins == winRounds) {
+            winner = 2;
+        }
+        score = `Player: ${playerWins}\nComputer: ${computerWins}`
+        if (winner != 0) {break;}
 
+        console.log(resultArr[1])
+        console.log(score)
+
+
+    }
+    if (winner == 1) {gameText = 'Congrats, you have won!\n'}
+    else {gameText = 'Sorry, you have lost :('}    
+    gameText += `Final score is...\n${score}`
+    return gameText
+}
 /* ---------- Main ---------- */
-
-console.log(playRound(getPlayerMove(), getComputerMove()))
+console.log(playGame(getWinRounds()))
