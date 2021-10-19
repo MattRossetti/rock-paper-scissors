@@ -145,4 +145,5 @@ let playGame = (winRounds) => {
     return gameText
 }
 /* ---------- Main ---------- */
-console.log(playGame(getWinRounds()))
+console.log('done')
+// console.log(playGame(getWinRounds()))

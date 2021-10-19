@@ -1,0 +1,73 @@
+/* styles.css for rock paper scissors */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #305F72;
+  font-family: 'Inconsolata', monospace;
+  color: whitesmoke;
+}
+
+h1 {
+  font-weight: bolder;
+  text-align: center;
+  font-size: 48px;
+  margin: 12px auto;
+}
+
+button {
+  background-color: #305F72;
+  width: 90px;
+  height: 60px;
+  margin: 20px 20px;
+  font-size: 32px;
+  color: whitesmoke;
+  border: 4px solid #568EA6;
+  border-radius: 12px;
+}
+
+.gameArea{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+  margin: 4px;
+}
+
+h5 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.moveContainer {
+  display: flex;
+  margin: 20px auto;
+}
+
+.picButton {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 75%;
+  max-height: 75%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-weight: bold;
+}
