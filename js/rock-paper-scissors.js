@@ -15,7 +15,7 @@ let random = (x) => {
 let playRound = (playerMove, computerMove) => {
     let result = `You played ${playerMove}.\nComputer played ${computerMove}.\n`;
     if (playerMove == computerMove) {
-        result += 'The resultArr is a tie!';
+        result += 'The result is a tie!';
     }
     else if (playerMove == 'rock' && computerMove == 'scissors') {
         playerWins += 1;
