@@ -1,5 +1,8 @@
 # Rock-Paper-Scissors in your browser!
 
+## Project Link
+https://mattrossetti.github.io/rock-paper-scissors/
+
 ## Project Overview
 The goal of this project was to make a fun interactive browser of Rock-Paper-Scissors using HTML, CSS, and Javascript. This project is part of the Odin Project's Javascript Fundamentals course.
 
