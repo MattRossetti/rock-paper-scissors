@@ -42,6 +42,7 @@ button {
   color: whitesmoke;
   border: 4px solid #568EA6;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 input {

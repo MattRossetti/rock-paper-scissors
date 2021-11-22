@@ -108,12 +108,13 @@ let buildPlayArea = () => {
     // updateGameScores()
     const score = document.createElement('h3');
     const gameCommentary = document.createElement('h5');
+    gameCommentary.setAttribute('id', 'gameCommentary')
     const movePrompt = document.createElement('h3');
     const rockButton = document.createElement('button');
     const paperButton = document.createElement('button');
     const scissorsButton = document.createElement('button');
     
-    score.textContent = `the score is ${playerWins} to ${computerWins}`;
+    score.textContent = `The score is ${playerWins} to ${computerWins}`;
     score.setAttribute('id', 'score')
     gameCommentary.textContent = getGameCommentary();
     movePrompt.textContent = 'What is your next move?'
@@ -152,7 +153,7 @@ let buildPlayArea = () => {
 }
 
 let getGameCommentary = () => {
-    if (playerWins == computerWins) return 'tie game.'
+    if (playerWins === computerWins) return 'Tie game.'
     else if (playerWins > computerWins) return 'You are winning. suprisingly...'
     else return 'You are losing, try harder.'
 }
@@ -164,9 +165,11 @@ let updateGameCommentary = (result) => {
     }
     const score = document.getElementById('score');
     const roundCommentary = document.createElement('h3')
-    score.textContent = `the score is ${playerWins} to ${computerWins}`;
+    score.textContent = `The score is ${playerWins} to ${computerWins}`;
     roundCommentary.textContent = result;
     roundCommentContainer.append(roundCommentary);
+    const gameCommentary = document.getElementById('gameCommentary')
+    gameCommentary.textContent = getGameCommentary();
 }
 
 let clearContent = () => {
